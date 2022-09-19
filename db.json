@@ -1,0 +1,41 @@
+{
+  "productList": [
+    {
+      "productName": "Nice",
+      "category": "Electronics",
+      "freshness": "Brand New",
+      "date": "2022-09-20T16:00:00.000Z",
+      "price": 2,
+      "comment": "wewsds",
+      "id": 1
+    },
+    {
+      "productName": "Iphone 14 PRO Max",
+      "category": "Electronics",
+      "freshness": "Second Hand",
+      "date": "2022-12-20T16:00:00.000Z",
+      "price": 51000,
+      "comment": "niceaaa",
+      "id": 2
+    },
+    {
+      "productName": "samsung s20",
+      "category": "Electronics",
+      "freshness": "Brand New",
+      "date": "2022-09-21T16:00:00.000Z",
+      "price": 232,
+      "comment": "sadasda",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
