@@ -1,31 +1,13 @@
 {
   "productList": [
     {
-      "productName": "Nice",
-      "category": "Vegetables",
-      "freshness": "Brand New",
-      "date": "2022-09-20T16:00:00.000Z",
-      "price": 2,
-      "comment": "test",
-      "id": 1
-    },
-    {
-      "productName": "Iphone 14 PRO Max",
+      "productName": "Iphone 14 ",
       "category": "Vegetables",
       "freshness": "Second Hand",
       "date": "2022-06-13T16:00:00.000Z",
       "price": 51000,
       "comment": "niceaaa",
       "id": 2
-    },
-    {
-      "productName": "samsung s20",
-      "category": "Electronics",
-      "freshness": "Brand New",
-      "date": "2022-09-21T16:00:00.000Z",
-      "price": 232,
-      "comment": "arvin",
-      "id": 3
     },
     {
       "productName": "test",
@@ -35,24 +17,6 @@
       "price": 23232,
       "comment": "aaaa",
       "id": 4
-    },
-    {
-      "productName": "sss",
-      "category": "Electronics",
-      "freshness": "Brand New",
-      "date": "2022-09-19T16:00:00.000Z",
-      "price": 232,
-      "comment": "wewew",
-      "id": 5
-    },
-    {
-      "productName": "s",
-      "category": "Vegetables",
-      "freshness": "Refurbished",
-      "date": "2022-09-20T16:00:00.000Z",
-      "price": 22,
-      "comment": "www",
-      "id": 6
     }
   ],
   "comments": [

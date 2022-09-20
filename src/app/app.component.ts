@@ -5,7 +5,7 @@ import { ApiService } from './services/api.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-
+import {NgToastService} from 'ng-angular-popup';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,7 +21,7 @@ export class AppComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog : MatDialog, private api: ApiService){
+  constructor(private dialog : MatDialog, private api: ApiService, private toast : NgToastService){
 
   }
   ngOnInit(): void {
@@ -46,7 +46,8 @@ export class AppComponent implements OnInit{
         this.dataSource.sort = this.sort;
       },
       error:(err)=>{
-        alert("error while fetching the records")
+        this.toast.success({detail: "Error Message", summary:"error while fetching the records",duration:5000})
+        //alert("error while fetching the records")
       }
     })
   }
@@ -74,11 +75,13 @@ export class AppComponent implements OnInit{
     this.api.deleteProduct(id)
     .subscribe({
       next:(res)=>{
-        alert("Product successfully deleted")
+        this.toast.success({detail: "Success Message", summary:"Product Deleted Successfully",duration:5000})
+        //alert("Product successfully deleted")
         this.getAllProduct();
       },
       error:()=>{
-        alert("Error while deleting")
+        this.toast.error({detail: "Error Message", summary: "Login failed, try again later",duration:5000})
+        //alert("Error while deleting")
       }
     })
     

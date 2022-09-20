@@ -9,8 +9,8 @@
 <div class="container">
   <div style="margin-top: 10px">
     <mat-form-field appearance="standard">
-      <mat-label>Filter</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+      <mat-label>Search Item</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Product Name, Price, Comment" #input>
     </mat-form-field>
     
     <div class="mat-elevation-z8">
@@ -78,3 +78,4 @@
     </div>
   </div>
 </div>
+<lib-ng-toast></lib-ng-toast>

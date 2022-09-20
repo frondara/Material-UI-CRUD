@@ -2,6 +2,7 @@ import { Component, Inject,OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
+import { NgToastService } from 'ng-angular-popup';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -16,7 +17,7 @@ export class DialogComponent implements OnInit {
 
   constructor(private formBuilder : FormBuilder, private api : ApiService, 
     @Inject(MAT_DIALOG_DATA) public editData: any,
-    private dialogRef : MatDialogRef<DialogComponent>) { }
+    private dialogRef : MatDialogRef<DialogComponent>, private toast : NgToastService) { }
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
@@ -43,12 +44,14 @@ export class DialogComponent implements OnInit {
         this.api.postProduct(this.productForm.value)
         .subscribe({
           next:(res)=>{
-            alert("Product added successfully")
+            this.toast.success({detail: "Success Message", summary:"Product Added Successfully",duration:5000})
+            //alert("Product added successfully")
             this.productForm.reset();
             this.dialogRef.close('save');
           },
           error:()=>{
-            alert("Error while adding product")
+            this.toast.error({detail: "Error Message", summary:"Error while updating product",duration:5000})
+            //alert("Error while adding product")
           }
         })
       }
@@ -62,12 +65,14 @@ export class DialogComponent implements OnInit {
     this.api.putProduct(this.productForm.value, this.editData.id)
     .subscribe({
       next:(res)=>{
-        alert("Product updated successfully")
+        this.toast.success({detail: "Success Message", summary:"Product Updated Successfully",duration:5000})
+        //alert("Product updated successfully")
         this.productForm.reset();
         this.dialogRef.close('update');
       },
       error:()=>{
-        alert("Error while updating product");
+        this.toast.error({detail: "Error Message", summary:"Error while updating product",duration:5000})
+        //alert("Error while updating product");
       }
     }
     )
