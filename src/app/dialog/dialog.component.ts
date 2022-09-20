@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
 import { NgToastService } from 'ng-angular-popup';
+import { DialogService } from '../services/dialog.service';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -17,7 +18,8 @@ export class DialogComponent implements OnInit {
 
   constructor(private formBuilder : FormBuilder, private api : ApiService, 
     @Inject(MAT_DIALOG_DATA) public editData: any,
-    private dialogRef : MatDialogRef<DialogComponent>, private toast : NgToastService) { }
+    private dialogRef : MatDialogRef<DialogComponent>, private toast : NgToastService,
+    private dialogService:DialogService) { }
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
@@ -56,7 +58,7 @@ export class DialogComponent implements OnInit {
         })
       }
     }else{
-      this.updateProduct();
+      this.updateConfirmDialog();
     }
     
   }
@@ -74,9 +76,32 @@ export class DialogComponent implements OnInit {
         this.toast.error({detail: "Error Message", summary:"Error while updating product",duration:5000})
         //alert("Error while updating product");
       }
-    }
-    )
+    })
   }
 
+  updateConfirmDialog(){
+    this.dialogService.confirmDialog({
+      title: 'Confirmation',
+      message: 'Are you sure you want to update this record?',
+      confirmText: 'Yes',
+      cancelText: 'No'
+    }).subscribe(res=>{
+      if(res){
+        this.api.putProduct(this.productForm.value, this.editData.id)
+        .subscribe({
+          next:(res)=>{
+            this.toast.success({detail: "Success Message", summary:"Product Updated Successfully",duration:5000})
+            //alert("Product updated successfully")
+            this.productForm.reset();
+            this.dialogRef.close('update');
+          },
+          error:()=>{
+            this.toast.error({detail: "Error Message", summary:"Error while updating product",duration:5000})
+            //alert("Error while updating product");
+          }
+        })
+      }
+    })
+  }
 
 }

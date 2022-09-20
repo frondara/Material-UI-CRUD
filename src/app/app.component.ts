@@ -6,6 +6,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {NgToastService} from 'ng-angular-popup';
+import { DialogService } from './services/dialog.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -21,7 +22,8 @@ export class AppComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog : MatDialog, private api: ApiService, private toast : NgToastService){
+  constructor(private dialog : MatDialog, private api: ApiService, private toast : NgToastService,
+    private dialogService : DialogService){
 
   }
   ngOnInit(): void {
@@ -33,6 +35,31 @@ export class AppComponent implements OnInit{
     }).afterClosed().subscribe(val=>{
       if(val ==='save'){
         this.getAllProduct();
+      }
+    })
+  }
+
+  deleteConfirmDialog(id:number){
+    this.dialogService.confirmDialog({
+      title: 'Confirmation',
+      message: 'Are you sure you want to delete this record?',
+      confirmText: 'Yes',
+      cancelText: 'No'
+    }).subscribe(res=> {
+      if(res){
+        console.log(res)
+        this.api.deleteProduct(id)
+        .subscribe({
+          next:(res)=>{
+            this.toast.success({detail: "Success Message", summary:"Product Deleted Successfully",duration:5000})
+            //alert("Product successfully deleted")
+            this.getAllProduct();
+          },
+          error:()=>{
+            this.toast.error({detail: "Error Message", summary: "Login failed, try again later",duration:5000})
+            //alert("Error while deleting")
+          }
+        })
       }
     })
   }

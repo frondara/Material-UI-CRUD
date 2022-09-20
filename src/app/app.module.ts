@@ -20,11 +20,13 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { NgToastModule } from 'ng-angular-popup';
+import { ConfirmComponent } from './dialog/confirm/confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogComponent
+    DialogComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
