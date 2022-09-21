@@ -73,7 +73,7 @@ export class AppComponent implements OnInit{
         this.dataSource.sort = this.sort;
       },
       error:(err)=>{
-        this.toast.success({detail: "Error Message", summary:"error while fetching the records",duration:5000})
+        this.toast.error({detail: "Error Message", summary:"error while fetching the records",duration:5000})
         //alert("error while fetching the records")
       }
     })
