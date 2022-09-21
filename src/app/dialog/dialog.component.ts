@@ -52,7 +52,7 @@ export class DialogComponent implements OnInit {
             this.dialogRef.close('save');
           },
           error:()=>{
-            this.toast.error({detail: "Error Message", summary:"Error while updating product",duration:5000})
+            this.toast.error({detail: "Error Message", summary:"Error while adding product",duration:5000})
             //alert("Error while adding product")
           }
         })

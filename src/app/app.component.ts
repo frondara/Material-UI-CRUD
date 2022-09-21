@@ -56,7 +56,7 @@ export class AppComponent implements OnInit{
             this.getAllProduct();
           },
           error:()=>{
-            this.toast.error({detail: "Error Message", summary: "Login failed, try again later",duration:5000})
+            this.toast.error({detail: "Error Message", summary: "Error while deleting product",duration:5000})
             //alert("Error while deleting")
           }
         })
